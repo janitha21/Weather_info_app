@@ -1,0 +1,11 @@
+auth0:
+  audience: your-auth0-api-audience
+  issuer: https://your-domain.auth0.com/
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://weather-app.eu.auth0.com/
+          audience: https://weather-api.fidenz.com
