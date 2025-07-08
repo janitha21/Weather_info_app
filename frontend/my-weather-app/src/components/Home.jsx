@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import WeatherCard from "./WeatherCardComponent/WeatherCard";
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = ({ searchCity }) => {
   const [weatherList, setWeatherList] = useState([]);
   const [loading, setLoading] = useState(true);
   const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoading || !isAuthenticated) return;
+    
+    console.log("Auth:", isAuthenticated, "Loading:", isLoading);
+
+    if (isLoading) return;
+
 
     const fetchWeather = () => {
-      const api = "http://localhost:8080/task/get-all";
+      const api = "http://localhost:8080/city/get-all";
 
       getAccessTokenSilently()
         .then((token) => {
@@ -34,13 +40,16 @@ const Home = ({ searchCity }) => {
         .catch((error) => {
           console.error('Error fetching weather:', error);
           setLoading(false);
+          alert('Access denied or invalid user. Redirecting to dashboard.');
+          navigate('/dashboard');
         });
     };
 
     fetchWeather();
-    const interval = setInterval(fetchWeather, 30000);
+
+    const interval = setInterval(fetchWeather, 300000);
     return () => clearInterval(interval);
-  }, [isAuthenticated, isLoading, getAccessTokenSilently]);
+  }, [isAuthenticated, isLoading, getAccessTokenSilently, navigate]);
 
   const filteredWeatherList = weatherList.filter(item =>
     searchCity
@@ -51,16 +60,19 @@ const Home = ({ searchCity }) => {
   return (
     <div className="min-vh-100 bg-light py-5">
       <div className="container">
-        <h1 className="text-center text-primary fw-bold mb-3 display-5">
-          🌍 Weather Dashboard
-        </h1>
 
-       
+        {/* Head */}
+        <div className="text-center mb-5 p-4 rounded shadow-sm" style={{ backgroundColor: "#f8f9fa" }}>
+          <h1 className="text-primary fw-bold display-5 mb-3" style={{ fontFamily: "Segoe UI, sans-serif", letterSpacing: "1px" }}>
+            🌍 Weather Dashboard
+          </h1>
 
-        <p className="text-center text-muted mb-5 fs-5">
-          Real-time weather updates for selected cities, refreshed every 30 seconds.
-        </p>
+          <p className="text-muted fs-5" style={{ maxWidth: "600px", margin: "0 auto", lineHeight: "1.6" }}>
+            Real-time weather updates for selected cities. Stay informed with updates refreshed every <strong>5 minutes</strong>.
+          </p>
+        </div>
 
+        {/* Body */}
         {loading ? (
           <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "300px" }}>
             <div className="spinner-border text-primary" role="status">

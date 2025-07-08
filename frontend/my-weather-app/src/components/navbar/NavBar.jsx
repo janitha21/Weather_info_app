@@ -1,49 +1,51 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import './Navbar.css'; // External CSS
 
 const Navbar = ({ onSearch }) => {
   const { user, isAuthenticated, logout } = useAuth0();
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const city = e.target.elements.search.value;
-    onSearch(city); // Pass search to App
-  };
-
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary px-4 py-3 shadow">
+    <nav className="navbar custom-navbar">
       <div className="container-fluid">
-        <span className="navbar-brand fw-bold fs-4">🌤️ WeatherNow</span>
+        <span className="navbar-brand custom-brand">🌤️ WeatherNow</span>
 
-        <form className="d-flex me-auto ms-3" onSubmit={handleSearch}>
+        {/* Search Bar */}
+        <div className="search-bar">
           <input
             type="text"
             name="search"
-            className="form-control me-2"
+            className="form-control custom-search"
             placeholder="Search city..."
+            onChange={(e) => onSearch(e.target.value)}
           />
-          <button className="btn btn-light" type="submit">Search</button>
-        </form>
+        </div>
 
+        {/* Dropdown */}
         {isAuthenticated && user && (
-          <div className="d-flex align-items-center gap-3">
-            <div className="text-end text-white">
-              <div className="fw-bold">{user.name}</div>
-              <div className="small">{user.email}</div>
-            </div>
-            <img
-              src={user.picture}
-              alt="Profile"
-              width={40}
-              height={40}
-              className="rounded-circle border border-white"
-            />
+          <div className="dropdown ms-3">
             <button
-              className="btn btn-outline-light btn-sm"
-              onClick={() => logout({ returnTo: window.location.origin + "/dashboard" })}
+              className="btn custom-user-btn dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
-              Logout
+              <i className="bi bi-list"></i> {user.email}
             </button>
+            <ul className="dropdown-menu custom-dropdown shadow">
+              <li className="dropdown-header">Quick Actions</li>
+              <li><button className="dropdown-item"><i className="bi bi-house-door"></i> Home</button></li>
+              <li><button className="dropdown-item"><i className="bi bi-gear"></i> Settings</button></li>
+              <li><hr className="dropdown-divider" /></li>
+              <li>
+                <button
+                  className="dropdown-item text-danger"
+                  onClick={() => logout({ returnTo: window.location.origin + "/dashboard" })}
+                >
+                  <i className="bi bi-box-arrow-right"></i> Logout
+                </button>
+              </li>
+            </ul>
           </div>
         )}
       </div>

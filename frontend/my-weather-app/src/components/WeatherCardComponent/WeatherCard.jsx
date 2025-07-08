@@ -1,8 +1,8 @@
 import React from 'react';
 
 const WeatherCard = ({ cityName, description, temperature, timestamp }) => {
+  console.log(timestamp);
   
-
   return (
     <div
       className="card weather-card text-white border-0 shadow-lg h-100 position-relative overflow-hidden"
@@ -69,7 +69,7 @@ const WeatherCard = ({ cityName, description, temperature, timestamp }) => {
               animation: 'pulse 2s infinite',
             }}
           />
-          <small className="text-white-50">Updated: {timestamp}</small>
+          
         </div>
       </div>
 

@@ -13,10 +13,11 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/task")
+@RequestMapping("/city")
 public class WeatherController {
     private final WeatherService weatherService;
 
+    //get all cities data
     @CrossOrigin
     @GetMapping("/get-all")
     public List<WeatherDto> getWeatherInfo(){

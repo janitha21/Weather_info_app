@@ -1,14 +1,21 @@
 import './App.css';
 import Home from './components/Home';
+
 import Dashboard from './components/dashboard/Dashboard';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/navbar/NavBar';
 import React, { useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function App() {
   const location = useLocation();
   const showLayout = location.pathname === "/home";
   const [searchCity, setSearchCity] = useState('');
+   const { isAuthenticated, isLoading } = useAuth0();
+
+    if (!isLoading && !isAuthenticated && location.pathname === "/home") {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   return (
     <div className="app-container">

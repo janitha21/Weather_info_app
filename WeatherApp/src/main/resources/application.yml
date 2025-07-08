@@ -9,3 +9,5 @@ spring:
         jwt:
           issuer-uri: https://weather-app.eu.auth0.com/
           audience: https://weather-api.fidenz.com
+server:
+  port: 8080

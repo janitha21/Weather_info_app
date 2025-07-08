@@ -77,7 +77,7 @@ public class WeatherServiceImpl implements WeatherService {
         }
     }
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 300000)
     public void updateWeatherInfo(){
 
           List<WeatherDto> updatedList = new ArrayList<>();
@@ -86,11 +86,6 @@ public class WeatherServiceImpl implements WeatherService {
               updatedList.add(weatherInfoByCityId);
           }
           weatherDataList = updatedList;
-
-//          for (WeatherDto city : weatherDataList) {
-//              System.out.println(city);
-//          }
-
 
 
     }

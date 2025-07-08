@@ -4,6 +4,7 @@ import App from './App';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js'
 
 const domain = "weather-app.eu.auth0.com";
 const clientId = "MRXIPwht2Sh8Glv6v1CBgZDX17oU9tsR";

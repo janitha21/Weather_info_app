@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 
 
 const Dashboard = () => {
+    
      const { loginWithRedirect, isAuthenticated , isLoading} = useAuth0();
      const navigate = useNavigate(); 
 
@@ -62,26 +63,7 @@ const Dashboard = () => {
           
           {/* Action Buttons */}
           <div className="d-flex gap-3 justify-content-center mb-5">
-            <button 
-              className="btn btn-light btn-lg px-5 py-3 fw-bold position-relative overflow-hidden"
-              style={{
-                borderRadius: '50px',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 8px 25px rgba(0,0,0,0.2)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = '0 12px 35px rgba(0,0,0,0.3)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
-              }}
-            >
-              <Users className="me-2" size={20} />
-              Sign Up
-            </button>
-            
+           
             <button onClick={() => loginWithRedirect()}
               className="btn btn-outline-light btn-lg px-5 py-3 fw-bold"
               style={{

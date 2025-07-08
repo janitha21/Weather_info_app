@@ -1,0 +1,51 @@
+/* Navbar.css */
+
+.custom-navbar {
+  background-color: #f1f4f8;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 400px;
+  margin-left: 1.5rem;
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 400px;
+  margin-left: 0;
+}
+
+
+.custom-user-btn {
+  background-color: #fff;
+  color: #f8f5f5;
+  border: 1px solid #ddd;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 8px 16px;
+}
+
+.custom-user-btn i {
+  margin-right: 8px;
+}
+
+.custom-dropdown {
+  border-radius: 12px;
+  min-width: 220px;
+  padding: 0.5rem;
+}
+
+.dropdown-header {
+  font-size: 0.9rem;
+  color: #f3f7f9;
+  font-weight: 600;
+}
