@@ -10,10 +10,16 @@ const Home = ({ searchCity }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    
+
     console.log("Auth:", isAuthenticated, "Loading:", isLoading);
 
     if (isLoading) return;
+
+    if (!isLoading && !isAuthenticated && location.pathname === "/home") {
+      console.log("work");
+
+      return <Navigate to="/dashboard" replace />;
+    }
 
 
     const fetchWeather = () => {
@@ -60,19 +66,6 @@ const Home = ({ searchCity }) => {
   return (
     <div className="min-vh-100 bg-light py-5">
       <div className="container">
-
-        {/* Head */}
-        <div className="text-center mb-5 p-4 rounded shadow-sm" style={{ backgroundColor: "#f8f9fa" }}>
-          <h1 className="text-primary fw-bold display-5 mb-3" style={{ fontFamily: "Segoe UI, sans-serif", letterSpacing: "1px" }}>
-            🌍 Weather Dashboard
-          </h1>
-
-          <p className="text-muted fs-5" style={{ maxWidth: "600px", margin: "0 auto", lineHeight: "1.6" }}>
-            Real-time weather updates for selected cities. Stay informed with updates refreshed every <strong>5 minutes</strong>.
-          </p>
-        </div>
-
-        {/* Body */}
         {loading ? (
           <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "300px" }}>
             <div className="spinner-border text-primary" role="status">
