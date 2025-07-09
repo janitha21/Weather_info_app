@@ -2,7 +2,7 @@ Java version-22.0.2 /
 Node version-22.14.0
 #
 Backend - Springboot /
-frontend - React
+frontend - React(using Vite)
 #
 Access Credentials-
 Email: careers@fidenz.com /
